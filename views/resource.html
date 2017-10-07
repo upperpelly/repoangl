@@ -1,0 +1,108 @@
+﻿<!-- *** Body Container starts here -->
+<div class="container-fluid" [ngClass]="{'Open':shareservice.isOpen==true}">
+
+    <!-- *** Leads Panel -->
+    <l-panel></l-panel>    <!-- Leads Panel *** -->
+    <!-- *** Manage Resource Starts here -->
+    <div class="ContentPanel CPoffset">
+        <div class="row MinHyt DspTableDesk">
+            <div class="ResourceMngmnt">
+                <div class="col-md-12">
+                    <h1>
+                        Manage Resources
+                        <button class="btn btn-primary Details AddNew" routerLink="/addresource" routerLinkActive="active"><span></span>Add New</button>
+                    </h1>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 MT10">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered M0 table-striped">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Unique ID</th>
+                                    <th>Designation</th>
+                                    <th>Email ID</th>
+                                    <th>Contact Number</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of resources let indx = index">
+                                    <td>{{indx+1}}</td>
+                                    <td><a href="">{{item.contactDetails.contactPerson}}</a></td>
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.contactDetails.designation}}</td>
+                                    <td>{{item.contactDetails.email}}</td>
+                                    <td>{{item.contactDetails.contactNumber1}}</td>
+                                    <td><a (click)="updateresource(item)" class="MR5"><span class="glyphicon glyphicon-pencil"></span></a> 
+                                    <a (click)="deleteresource(indx)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Manage Resource Ends here *** -->
+            <!-- *** Recent Accounts Starts here -->
+            <div class="RecentPanel">
+                <div class="col-md-12">
+                    <h1>your recent accounts</h1>
+                    <div class="Accounts">
+                        <h2 class="MT10">William Mason</h2>
+                        <p>
+                            <label>Account Number</label>
+                            <span>SBXS 564325</span>
+                        </p>
+                        <p>
+                            <label>Located at</label>
+                            <span>
+                                123 6th St.<br>
+                                Melbourne, FL 32904
+                            </span>
+                        </p>
+                        <button class="btn btn-primary Details">Details</button>
+                    </div>
+                    <div class="Accounts">
+                        <h2 class="MT10">James Benjamin</h2>
+                        <p>
+                            <label>Account Number</label>
+                            <span>AXSD 345980</span>
+                        </p>
+                        <p>
+                            <label>Located at</label>
+                            <span>
+                                4 Goldfield Rd.<br>
+                                Honolulu, HI 96815
+                            </span>
+                        </p>
+                        <button class="btn btn-primary Details">Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Accounts Ends here *** -->
+
+        </div>
+        <!-- *** footer -->
+        <div class="row">
+            <div class="col-md-12 footer MT0">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a> <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a> <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+</div>
+<!-- Body Container ends here *** -->

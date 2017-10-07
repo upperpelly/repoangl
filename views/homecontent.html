@@ -1,0 +1,171 @@
+﻿<div class="container-fluid">
+
+    <!-- carousel Starts here -->
+    <div class="ContentPanel">
+        <section class="main-slider row">
+
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img src="images/image1.jpg" alt="">
+                    <div class="carousel-caption">
+                        <h3>Slide 1</h3>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="images/image2.jpg" alt="">
+                    <div class="carousel-caption">
+                        <h3>Slide 2</h3>
+                        <p>vel scelerisque nisl consectetur et.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="images/image3.jpg" alt="">
+                    <div class="carousel-caption">
+                        <h3>Slide 3</h3>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+            <!-- /#myCarousel -->
+        </section>
+        <!-- /.main-slider -->
+    </div>
+    <!-- carousel ends here -->
+    <!-- *** Leads Panel -->
+    <div class="LeadsPanel">
+        <h1>Your Leads Are Here <span class="caret pull-right"></span></h1>
+        <div class="Leads">
+
+            <div class="wrapper" *ngFor="let offer of leads">
+                <span class="heading">{{offer.displayName}}</span>
+                <div class="clearfix"></div>
+                <span class="{{offer.icon}} icon"></span>
+                <span class="LeadsCount">
+                    <label class="value">{{offer.leadCount}}</label>
+                    <label>{{offer.leadName}}</label>
+                </span>
+                <span class="LeadsCount">
+                    <label class="value">{{offer.count}}</label>
+                    <label>{{offer.valueName}}</label>
+                </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Leads Panel *** -->
+    <!-- *** Offerings Starts here -->
+    <div class="ContentPanel MT0">
+        <div class="row offerings">
+            <div class="col-md-12">
+                <h1>Your Offerings</h1>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 one" *ngFor="let item of offerings" [ngClass]="{'Subscribe': item.isSubscribed == false}">
+                <a class="thumbnail" [ngClass]="{'open': item.isSubShow}">
+                    <img src="{{item.url}}" alt="{{item.displayName}}">
+                    <figcaption *ngIf="item.isSubscribed" (click)="showSubscription(item)">
+                        {{item.displayName}}
+                        <p><label>{{item.leadName}} <font>{{item.count}}</font></label></p>
+                        <p><label>{{item.valueName}} <font>{{item.leadCount}}</font></label></p>
+                        <p><button class="btn btn-primary Details">Details</button> <button (click)="editSubscription(item)" class="btn btn-primary Edit">Edit</button></p>
+                    </figcaption>
+                    <figcaption *ngIf="!item.isSubscribed" (click)="showSubscription(item)">
+                        {{item.displayName}}
+                        <p *ngIf="item.show"><button class="btn btn-primary Details" (click)="subscribe(item)">Subscribe</button></p>
+                        <p *ngIf="!item.show"><button class="btn btn-primary Details">Coming Soon</button></p>
+                    </figcaption>
+                </a>
+            </div>
+
+
+        </div>
+
+
+        <!-- *** News Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Your news feed</h1>
+            </div>
+
+            <div class="home-demo col-md-12">
+                <div class="large-12 columns">
+                    <div class="owl-carousel">
+                        <div class="item">
+                            <h2>Automobile</h2>
+                            <span class="date">28 Jun 2017</span>
+                            <p class="Txt999 NewsContent"> The concept of artificial intelligence (AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Sell Car</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications The concept of artificial intelligence (AI) was nothing more than science...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Spares & Accessories</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">in technology, computing, and communications The concept of artificial intelligence (AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Parking</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">(AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications The concept of artificial intelligence...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Automobile</h2>
+                            <span class="date">28 Jun 2017</span>
+                            <p class="Txt999 NewsContent"> The concept of artificial intelligence (AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Sell Car</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications The concept of artificial intelligence (AI) was nothing more than science...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Spares & Accessories</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">in technology, computing, and communications The concept of artificial intelligence (AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                        <div class="item">
+                            <h2>Parking</h2>
+                            <span class="date">18 Jun 2017</span>
+                            <p class="Txt999 NewsContent">(AI) was nothing more than science fiction a few decades ago. Now, thanks to tremendous innovations in technology, computing, and communications The concept of artificial intelligence...</p>
+                            <button class="btn Details btn-primary">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- News Section *** -->
+        <!-- *** footer -->
+        <div class="row">
+            <div class="col-md-12 footer">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a>
+                        <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a>
+                        <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+</div>

@@ -1,0 +1,212 @@
+﻿<div class="container-fluid" [ngClass]="{'Open':shareservice.isOpen==true}">
+
+    <!-- *** Leads Panel -->
+    <lead-s></lead-s>    <!-- Leads Panel *** -->
+    <!-- *** Manage Resource Starts here -->
+    <div class="ContentPanel CPoffset">
+        <div class="row MinHyt DspTableDesk">
+            <div class="ResourceMngmnt">
+                <div class="col-md-12">
+                    <h1>Lead Information</h1>
+                </div>
+                <form>
+                    <div class="col-xs-12 col-sm-11 col-md-8 col-lg-6 Registration MT10">
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Lead ID</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.leadId}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Lead Generated Date</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.generatedDate}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-12 PL00">
+                            <h1>Vehicle Requirement</h1>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>New/Used</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.newused}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Year</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.makemodel.year}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Make</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.makemodel.make}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Model</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.makemodel.model}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>AutoScoop Trim</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.makemodel.autoscoopTrim}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Main Colour</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.mainColour}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Second Colour</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.secondColor}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Additional Info</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.additionalDetails}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Estimated Time to Buy</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.estimatedDate}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-12 PL00">
+                            <h1>User Info Check</h1>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>AutoScoop ID</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.usercontext.autoscoopId}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Id Check</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.userinfocheck.idCheck}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Finance Approved</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.userinfocheck.finance}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Vehicle for swap/sell</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.userinfocheck.vehicleSellSwap}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <label>Credit Card Check</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <label>{{leaddetails.userinfocheck.creditcardCheck}}</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--<div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details NoArrow">Preview</button>
+                            <button class="btn btn-primary Details" [disabled]="inventoryGroup.invalid" type="submit">Save</button>
+                        </div>-->
+                    </div>
+                </form>
+            </div>
+            <!-- Manage Resource Ends here *** -->
+            <!-- *** Recent Accounts Starts here -->
+            <div class="RecentPanel">
+                <div class="col-md-12">
+                    <h1>your recent accounts</h1>
+                    <div class="Accounts" *ngFor="let inv of inventories">
+                        <h2 class="MT10">{{inv.headerText}}</h2>
+                        <p>
+                            <label>VIN Number</label>
+                            <span>{{inv.vinNumber}}</span>
+                        </p>
+                        <p>
+                            <label>Stock Number</label>
+                            <span>
+                                {{inv.dealerStockNumber}}
+                            </span>
+                        </p>
+                        <button class="btn btn-primary Details">Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Accounts Ends here *** -->
+
+        </div>
+        <!-- *** footer -->
+        <div class="row">
+            <div class="col-md-12 footer MT0">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a> <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a> <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+
+</div>

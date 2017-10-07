@@ -1,0 +1,245 @@
+﻿<div class="container-fluid" [ngClass]="{'Open':shareservice.isOpen==true}">
+    <!-- *** Leads Panel -->
+    <l-panel></l-panel>    <!-- Leads Panel *** -->
+    <!-- *** Manage Resource Starts here -->
+    <div class="ContentPanel CPoffset">
+        <div class="row MinHyt DspTableDesk">
+            <div class="ResourceMngmnt">
+                <div class="col-md-12">
+                    <h1>create new vehicle in inventory</h1>
+                </div>
+                <form novalidate (ngSubmit)="saveinventory()" [formGroup]="inventoryGroup">
+                    <div class="col-xs-12 col-sm-11 col-md-8 col-lg-6 Registration MT10">
+                        <div class="form-group">
+                            <label>Advertisement Header Text</label>
+                            <input autofocus type="text" class="form-control" placeholder="Enter Your Header Here..." formControlName="headerText">
+                            <div class="error" *ngIf="inventoryGroup.get('headerText').touched && inventoryGroup.get('headerText').invalid">
+                                Advertisement Header Text is mandatory
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Identification</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="VIN Number" formControlName="vinNumber">
+                                <div class="error" *ngIf="inventoryGroup.get('vinNumber').touched && inventoryGroup.get('vinNumber').invalid">
+                                    VIN Number is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                <input type="text" class="form-control" placeholder="Delear Stock Number" formControlName="dealerStockNumber">
+                                <div class="error" *ngIf="inventoryGroup.get('dealerStockNumber').touched && inventoryGroup.get('dealerStockNumber').invalid">
+                                    Delear Stock Number is mandatory
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Condition</label>
+                            <div class="clearfix"></div>
+                            <div class="squaredOne">
+                                <input type="radio" id="NewCars" value="New" (change)="carNewChanged(true)" name="isNewCar" formControlName="isNewCar" />
+                                <label for="NewCars">New</label>
+                            </div>
+                            <div class="squaredOne">
+                                <input type="radio" id="UsedCars" value="Used" name="isUsedCar" (change)="carOldChanged(true)" formControlName="isUsedCar" />
+                                <label for="UsedCars">Used</label>
+                            </div>
+                            <div class="squaredOne">
+                                <input type="checkbox" value="None" id="New_UsedCars" name="check" formControlName="isDemo" />
+                                <label for="New_UsedCars">Demo</label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="clearfix"></div>
+                            <div class="squaredOne">
+                                <label>Vehicle In Stock</label>
+                                <input type="checkbox" value="None" id="New_UsedCars" name="check" formControlName="inStock" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Registration</label>
+                            <div class="clearfix"></div>
+                            <div>
+                                <div regNumberclass="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5">
+                                    <input type="text" class="form-control" placeholder="Reg Number" formControlName="regNumber">
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5">
+                                    <select class="form-control" formControlName="state">
+                                        <option [ngValue]="null">State</option>
+                                        <option *ngFor="let state of shareservice.states" [ngValue]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 PR0Mob PL0 MT5Mob MT5">
+                                    <div class="input-group date" id="datetimepicker1">
+                                        <input class="form-control" type="date" placeholder="MM-DD-YY" formControlName="regEndDate">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Pricing Type</label>
+
+                            <div>
+                                <div class="squaredOne" *ngFor="let item of pricingTypes; let indx= index">
+                                    <input type="radio" value="None" id="{{item.name}}" [checked]="indx == 0" (change)="pricingCheck(item.name)" name="radiogroup" [value]="item.name" />
+                                    <label for="{{item.name}}">{{item.displayName}}</label>
+                                </div>
+                                <!--<div class="squaredOne">
+                                    <input type="radio" value="None" id="negotiable" (change)="pricingCheck('negotiable')" name="negotiable" [(ngModel)]="negotiable" [ngModelOptions]="{standalone: true}" />
+                                    <label for="negotiable">Negotiable</label>
+                                </div>
+                                <div class="squaredOne">
+                                        <input type="radio" value="None" id="range" (change)="pricingCheck('range')" name="range" [(ngModel)]="range" [ngModelOptions]="{standalone: true}" />
+                                        <label for="range">Price Range</label>
+                                </div>-->
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Pricing</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" *ngIf="isFixed">
+                                <input type="number" class="form-control" placeholder="Drive Away Price" formControlName="Price" min="0">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" *ngIf="isNegotiable">
+                                <input type="number" class="form-control" placeholder="Negotiable %" formControlName="negotiablePercent" min="0">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" *ngIf="isRange">
+                                <input type="number" class="form-control" placeholder="Min" formControlName="minPrice" min="0">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" *ngIf="isRange">
+                                <input type="number" class="form-control" placeholder="Max" formControlName="maxPrice" min="0">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Colour</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5">
+                                <select class="form-control" formControlName="extColour">
+                                    <option [ngValue]="null">Exterior Color</option>
+                                    <option>Red</option>
+                                    <option>Black</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5">
+                                <select class="form-control" formControlName="intColour">
+                                    <option [ngValue]="null">Interior Color</option>
+                                    <option>Red</option>
+                                    <option>Black</option>
+                                </select>
+                            </div>
+                            <!--<div class="col-md-4 col-sm-4 col-xs-12 PR0Mob PL0 MT5Mob MT5">
+                                <input type="text" class="form-control" placeholder="Odo Meter">
+                            </div>-->
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Car Extras</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob" *ngFor="let banner of carExtraList">
+                                <div class="squaredOne">
+                                    <input type="checkbox" value="None" id="{{banner.name}}" name="check" (change)="onbannerselect(banner)" [ngModelOptions]="{standalone: true}" [(ngModel)]="banner.isChecked" />
+                                    <label for="{{banner.name}}">{{banner.name}}</label>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="squaredOne">
+                                <textarea rows="4" cols="50" class="form-control" placeholder="Additional Details" formControlName="details"></textarea>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" class="btn btn-primary Details AddNew NoArrow" (change)="getImage($event)"><span>Add Photos</span>
+                            <div class="clearfix"></div>
+                            <div class="AddPhotos MT10">
+                                <span *ngFor="let imge of images"><img [src]="imge.url"><a href="javascript:void()"><i class="glyphicon glyphicon-remove"></i></a></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vehicle Used for Test Drive</label>
+                            <div class="clearfix"></div>
+                            <div class="squaredOne">
+                                <input type="radio" value="None" id="UsedCars" name="isVehicleUsed" formControlName="isVehicleUsed" />
+                                <label for="UsedCars">Yes</label>
+                            </div>
+                            <!--<div class="squaredOne">
+                                <input type="checkbox" value="None" id="New_UsedCars" name="check" />
+                                <label for="New_UsedCars">No</label>
+                            </div>-->
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details NoArrow">Preview</button>
+                            <button class="btn btn-primary Details" [disabled]="inventoryGroup.invalid" type="submit">Save</button>
+                            <!--<button class="btn btn-primary Details Cancel">Cancel</button>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Manage Resource Ends here *** -->
+            <!-- *** Recent Accounts Starts here -->
+            <div class="RecentPanel">
+                <div class="col-md-12">
+                    <h1>your recent accounts</h1>
+                    <div class="Accounts" *ngFor="let inv of inventories">
+                        <h2 class="MT10">{{inv.headerText}}</h2>
+                        <p>
+                            <label>VIN Number</label>
+                            <span>{{inv.vinNumber}}</span>
+                        </p>
+                        <p>
+                            <label>Stock Number</label>
+                            <span>
+                                {{inv.dealerStockNumber}}
+                            </span>
+                        </p>
+                        <button class="btn btn-primary Details">Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Accounts Ends here *** -->
+
+        </div>
+        <!-- *** footer -->
+        <div class="row">
+            <div class="col-md-12 footer MT0">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a> <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a> <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+</div>

@@ -1,0 +1,61 @@
+﻿<div class="LeadsPanel LeftOfferings">
+    <div class="LeftPanelToggle" (click)="showLeftPanel()"></div>
+    <h1>Your Offerings Here <span class="caret pull-right"></span></h1>
+    <div class="Leads">
+        <ul class="OfferingsLeftPanel">
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isNew==false}">
+                <a (click)="nav('BuyVehicle')"> <span class="flaticon-car-steering-wheel"></span> <span>New Vehicle</span> </a>
+                <button (click)="nav('BuyVehicle')" *ngIf="!shareservice.defaultSubs.isNew" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isPreOwned==false}">
+                <a (click)="nav('SellVehicle')"> <span class="flaticon-car-steering-wheel"></span> <span>Sell Vehicle</span> </a>
+                <button (click)="nav('SellVehicle')" *ngIf="!shareservice.defaultSubs.isPreOwned" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+        </ul>
+        <ul class="OfferingsLeftPanel">
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isLease==false}">
+                <a (click)="nav('LeaseVehicle')"> <span class="flaticon-car-steering-wheel"></span> <span>Lease Vehicle</span> </a>
+                <button (click)="nav('LeaseVehicle')" *ngIf="!shareservice.defaultSubs.isLease" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isInsurance==false}">
+                <a (click)="nav('Insurance')"> <span class="flaticon-umbrella"></span> <span>Insurance</span> </a>
+                <button (click)="nav('Insurance')" *ngIf="!shareservice.defaultSubs.isInsurance" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+        </ul>
+        <ul class="OfferingsLeftPanel">
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isFinance==false}">
+                <a (click)="nav('Finance')"> <span class="flaticon-money-bag-with-dollar-symbol"></span> <span>Finance</span> </a>
+                <button (click)="nav('Finance')" *ngIf="!shareservice.defaultSubs.isFinance" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isSM==false}">
+                <a (click)="nav('Servicemaintenance')"> <span class="flaticon-transport"></span> <span>Service & Maintenance</span> </a>
+                <button (click)="nav('Servicemaintenance')" *ngIf="!shareservice.defaultSubs.isSM" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+        </ul>
+
+        <ul class="OfferingsLeftPanel">
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isTranssport==false}">
+                <a (click)="nav('Transport')"> <span class="flaticon-frontal-taxi-cab"></span> <span>Transport</span></a>
+                <button (click)="nav('Transport')" *ngIf="!shareservice.defaultSubs.isTranssport" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isFuel==false}">
+                <a (click)="nav('Fuel')"> <span class="flaticon-car-in-garage"></span> <span>Fuel</span> </a>
+                <button (click)="nav('Fuel')" *ngIf="!shareservice.defaultSubs.isFuel" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+        </ul>
+        <ul class="OfferingsLeftPanel">
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isSpares==false}">
+                <a (click)="nav('Sparesaccessories')">
+                    <span class="flaticon-work-tools-cross"></span>
+                    <span>Spares & Accessories</span>
+                </a>
+                <button (click)="nav('Sparesaccessories')" *ngIf="!shareservice.defaultSubs.isSpares" onClick="location.href='subscribe.html'" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+            <li [ngClass]="{'disabled':shareservice.defaultSubs.isOthers==false}">
+                <a (click)="nav('Others')"> <span class="flaticon-transport"></span> <span>Others</span> </a>
+                <button (click)="nav('Others')" *ngIf="!shareservice.defaultSubs.isOthers" class="btn btn-primary Details MB20">Subscribe</button>
+            </li>
+
+        </ul>
+    </div>
+</div>

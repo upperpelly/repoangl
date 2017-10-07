@@ -1,0 +1,163 @@
+﻿<!-- *** Body Container starts here -->
+<div class="container-fluid" [ngClass]="{'Open':shareservice.isOpen==true}">
+
+    <!-- *** Leads Panel -->
+    <l-panel></l-panel>    <!-- Leads Panel *** -->
+    <!-- *** Add Resource Starts here -->
+    <div class="ContentPanel CPoffset">
+        <div class="row MinHyt DspTableDesk">
+            <div class="ResourceMngmnt">
+                <div class="col-md-12">
+                    <h1>Add New Resource</h1>
+                </div>
+                <div class="clearfix"></div><form novalidate (ngSubmit)="saveresource()" [formGroup]="resourceGroup">
+                    <div class="col-lg-8 col-xs-12 col-sm-12 col-md-9 MT10">
+                        <div class="form-group">
+                            <label>Enter Your Details</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-2 col-sm-2 col-xs-4 PL0 MT5Mob MT5" formGroupName="contactDetails">
+                                <select class="form-control" formControlName="title">
+                                    <option [ngValue]="null">Title</option>
+                                    <option>Mr</option>
+                                    <option>Mrs</option>
+                                    <option>Miss</option>
+                                </select>
+                                <div class="error" *ngIf="resourceGroup.get('contactDetails').get('title').touched && resourceGroup.get('contactDetails').get('title').invalid">
+                                    Title is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-12 PL0 PR0Mob MT5Mob MT5" formGroupName="contactDetails">
+                                <input type="text" class="form-control" placeholder="First Name" formControlName="contactPerson">
+                                <div class="error" *ngIf="resourceGroup.get('contactDetails').get('contactPerson').touched && resourceGroup.get('contactDetails').get('contactPerson').invalid">
+                                    First Name is mandatory with minimum of 3 characters
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-12 PL0 PR0Mob MT5Mob MT5" formGroupName="contactDetails">
+                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+                                <div class="error" *ngIf="resourceGroup.get('contactDetails').get('lastName').touched && resourceGroup.get('contactDetails').get('lastName').invalid">
+                                    Last Name is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob MT10">
+                                <input type="text" class="form-control" placeholder="Employee Number / Code" formControlName="employeeCode">
+                                <div class="error" *ngIf="resourceGroup.get('employeeCode').touched && resourceGroup.get('employeeCode').invalid">
+                                    Employee Code is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 MT5Mob MT10 PR0Mob" formGroupName="contactDetails">
+                                <input type="text" class="form-control" placeholder="Designation" formControlName="designation">
+                                <div class="error" *ngIf="resourceGroup.get('contactDetails').get('designation').touched && resourceGroup.get('contactDetails').get('designation').invalid">
+                                    Designation is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob MT10" formGroupName="contactDetails">
+                                <input type="text" class="form-control" placeholder="Contact Number" formControlName="contactNumber1">
+                                <div class="error" *ngIf="resourceGroup.get('contactDetails').get('contactNumber1').touched && resourceGroup.get('contactDetails').get('contactNumber1').invalid">
+                                    contact Number is mandatory
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob MT10" formGroupName="contactDetails">
+                                <div class="input-group date" id="datetimepicker1">
+                                    <input type="date" class="form-control" formControlName="dob" />
+                                    <div class="error" *ngIf="resourceGroup.get('contactDetails').get('dob').touched && resourceGroup.get('contactDetails').get('dob').invalid">
+                                        Date of Birth is mandatory
+                                    </div>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0Mob MT5Mob MT5 MT10" formGroupName="contactDetails">
+                                <textarea class="form-control" placeholder="Brief of employee" formControlName="additionalInfo"></textarea>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group SocialLinksWrapper">
+                            <label class="MT20">Add Social Media</label>
+                            <div class="clearfix"></div>
+                            <form novalidate (ngSubmit)="addsociallink()" [formGroup]="socialGroup">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 PL0 PR0Mob MT5Mob MT5 MB20">
+                                    <select class="Dropdown" formControlName="name">
+                                        <!--[ngModelOptions]="{standalone: true}"-->
+                                        <option value="null" [selected]="true" disabled selected>Select</option>
+                                        <option>Facebook</option>
+                                        <option>LinkedIn</option>
+                                        <option>Google+</option>
+                                    </select>
+
+                                    <input type="text" class="SocialLink" placeholder="Link" formControlName="url">
+                                    <button type="submit" class="socMedia-button AddNew"><span></span></button>
+                                </div>
+                                <div>
+                                    <span class="error" *ngIf="socialGroup.get('name').touched && socialGroup.get('name').invalid">
+                                        Social media is mandatory
+                                    </span><span class="error" *ngIf="socialGroup.get('url').touched && socialGroup.get('url').invalid">
+                                        Url is mandatory and must be in http://facebook.com/autoscoop/ format
+                                    </span>
+                                </div>
+                            </form>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 PL0 MT5Mob MT5">
+                                <label class="FullWidth" *ngFor="let social of resource.socialMedia">
+                                    <img src="images/{{social.name}}.jpg"><a href="" class="MT5Mob">{{social.url}}</a>
+                                </label>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 PL0 PR0Mob MT20 MB20">
+                            <button class="btn btn-primary Details NoArrow" (click)="resetForm()" [disabled]="resourceGroup.invalid" type="submit">Save & Add Another</button>
+                            <button class="btn btn-primary Details" [disabled]="resourceGroup.invalid" type="submit">Save</button>
+                            <!--<button class="btn btn-primary Details Cancel">Cancel</button-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Add Resource Ends here *** -->
+            <!-- *** Recent Accounts Starts here -->
+            <div class="RecentPanel">
+                <div class="col-md-12">
+                    <h1>your recent accounts</h1>
+                    <div class="Accounts" *ngFor="let res of resources">
+                        <h2 class="MT10">{{res.contactDetails.contactPerson}} {{res.contactDetails.lastName}}</h2>
+                        <p>
+                            <label>Employee Id</label>
+                            <span>{{res.employeeCode}}</span>
+                        </p>
+                        <p>
+                            <label>Designation</label>
+                            <span>
+                                {{res.contactDetails.designation}}
+                            </span>
+                        </p>
+                        <button class="btn btn-primary Details">Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Accounts Ends here *** -->
+
+        </div>
+        <!-- *** footer -->
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 footer MT0">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a> <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a> <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+
+</div>

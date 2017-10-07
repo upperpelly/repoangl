@@ -1,0 +1,680 @@
+﻿<!-- *** Body Container starts here -->
+<div class="container-fluid" [ngClass]="{'Open':shareservice.isOpen==true}">
+
+    <!-- *** Leads Panel -->
+    <l-panel></l-panel>
+    <!-- Leads Panel *** -->
+    <!-- *** Offerings Starts here -->
+    <div class="ContentPanel CPoffset">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Delear Registration</h1>
+            </div>
+        </div>
+        <div class="MinHyt">
+            <div class="RegTL">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="heading" [ngClass]="{'active': isBasicInfo}"><span>1</span>Basic Info</h3>
+                    </div>
+                    <div [ngbCollapse]="!isBasicInfo" class="col-xs-11 col-sm-11 col-md-5 Registration MT10">
+                        <form novalidate (ngSubmit)="onNext('basicinfo')" [formGroup]="basicGroup">
+
+                            <div class="form-group" formGroupName="basicInfo" *ngIf="isVehicle">
+                                <label>Select Vehicle Type</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                    <select class="form-control" formControlName="vehicleType">
+                                        <option>Car</option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="basicInfo" *ngIf="isSM || isTrasport || isFinance">
+                                <label>I/We are</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+                                    <select class="form-control" formControlName="vehicleType">
+                                        <option>Individual</option>
+                                        <option>Dealer</option>
+                                        <option>Franchise</option>
+                                        <option>Company</option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="basicInfo" *ngIf="isSM || isFinance">
+                                <label>Business/Franchise Name</label>
+                                <input type="text" class="form-control" placeholder="Business/Franchise Name" formControlName="dealerGroupName">
+                            </div>
+                            <div class="form-group" formGroupName="basicInfo">
+                                <label *ngIf="!isFinance">Enter License Details</label>
+                                <label *ngIf="isFinance">Enter Details</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+
+                                    <input type="text" class="form-control" placeholder="ABN Number" formControlName="ABNNumber">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceABNNumber').touched && basicGroup.get('basicInfo').get('licenceABNNumber').invalid">
+                                        License ABN number is mandatory
+                                    </div>-->
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob" *ngIf="!isFinance">
+                                    <input type="text" class="form-control" placeholder="Delear License Number" formControlName="licenceNumber">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceNumber').touched && basicGroup.get('basicInfo').get('licenceNumber').invalid">
+                                        License number is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="finance" *ngIf="isFinance || isInsurance">
+                                <label>Australian Financial Service Number</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+
+                                    <input type="text" class="form-control" placeholder="AFSL Number" formControlName="afslNo">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceABNNumber').touched && basicGroup.get('basicInfo').get('licenceABNNumber').invalid">
+                                        License ABN number is mandatory
+                                    </div>-->
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                    <input type="text" class="form-control" placeholder="Authorised Rep Number" formControlName="authRepNo">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceNumber').touched && basicGroup.get('basicInfo').get('licenceNumber').invalid">
+                                        License number is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="finance" *ngIf="isFinance || isInsurance">
+                                <label>Australian Credit License Number</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob">
+
+                                    <input type="text" class="form-control" placeholder="ACL Number" formControlName="aclNo">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceABNNumber').touched && basicGroup.get('basicInfo').get('licenceABNNumber').invalid">
+                                        License ABN number is mandatory
+                                    </div>-->
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob">
+                                    <input type="text" class="form-control" placeholder="Broker License Number" formControlName="brokerLicenceNo">
+                                    <!--<div class="error" *ngIf="basicGroup.get('basicInfo').get('licenceNumber').touched && basicGroup.get('basicInfo').get('licenceNumber').invalid">
+                                        License number is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Contact Details</label>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob" formGroupName="basicInfo">
+                                    <input type="text" class="form-control" placeholder="Contact Person Name" formControlName="dealername">
+                                    <!--<div class="error" *ngIf="basicGroup.get('contactDetails').get('contactPerson').touched && basicGroup.get('contactDetails').get('contactPerson').invalid">
+                                        Name is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob" formGroupName="basicInfo">
+                                    <input type="text" class="form-control" placeholder="Designation" formControlName="designation">
+                                    <!--<div class="error" *ngIf="basicGroup.get('contactDetails').get('designation').touched && basicGroup.get('contactDetails').get('designation').invalid">
+                                        Designation is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0Mob MT5" formGroupName="basicInfo">
+                                    <input type="tel" class="form-control" placeholder="Contact Number 1" formControlName="delmobile">
+                                    <!--<div class="error" *ngIf="basicGroup.get('contactDetails').get('contactNumber1').touched && basicGroup.get('contactDetails').get('contactNumber1').invalid">
+                                        Contact Number is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 PL0 PR0 MT5Mob MT5" formGroupName="basicInfo">
+                                    <input type="tel" class="form-control" placeholder="Contact Number 2" formControlName="landLine1">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT5Mob MT5" formGroupName="basicInfo">
+                                    <input type="email" class="form-control" placeholder="Enter Email ID" formControlName="email">
+                                    <!--<div class="error" *ngIf="basicGroup.get('contactDetails').get('email').touched && basicGroup.get('contactDetails').get('email').invalid">
+                                        Email is mandatory
+                                    </div>-->
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT5Mob MT5" formGroupName="basicInfo">
+                                    <textarea type="email" class="form-control" placeholder="Address / Level / Street" formControlName="streetName"></textarea>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" formGroupName="basicInfo">
+                                    <input type="text" class="form-control" placeholder="Subrb Name" formControlName="suborb">
+                                </div>
+                                <div class="col-md-4 col-sm-4e col-xs-12 PL0 PR0Mob MT5Mob MT5" formGroupName="basicInfo">
+                                    <input type="text" class="form-control" placeholder="Post Code" formControlName="postcode">
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0 MT5Mob MT5" formGroupName="basicInfo">
+                                    <select class="form-control" formControlName="state">
+                                        <!--(ngModelChange)="toNumber()"-->
+                                        <option [ngValue]="null">State</option>
+                                        <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 PL0 PR0Mob MT5Mob MT5" formGroupName="basicInfo">
+                                    <input type="text" class="form-control" placeholder="Website (if any)" formControlName="website">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="finance" *ngIf="isFinance">
+                                <label>Insurance provided to</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="allselected" value="None" id="allselectedf" name="check" (change)="onAllSelect($event)" />
+                                    <label for="allselectedf">All</label>
+                                    <span *ngFor="let insvh of insVehicleList">
+                                        <input type="checkbox" formControlName="insVehicles" [(ngModel)]="insvh.selected" value="None" id="{{insvh.name}}" name="check" (change)="onFinanceVehChange(insvh)" />
+                                        <label for="{{insvh.name}}">{{insvh.name}}</label>
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="insurance" *ngIf="isInsurance">
+                                <label>Type of vehicle we loan</label>
+                                <div class="clearfix"></div>
+
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="insVehicles" value="None" id="allselected" name="check" (change)="onAllSelect($event)" />
+                                    <label for="allselected">All</label>
+                                    <span *ngFor="let insvh of insVehicleList">
+                                        <input type="checkbox" formControlName="insVehicles" [(ngModel)]="insvh.selected" value="None" id="{{insvh.name}}" name="check" (change)="onFinanceVehChange(insvh)" />
+                                        <label for="{{insvh.name}}">{{insvh.name}}</label>
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="insurance" *ngIf="isInsurance">
+                                <label>Type of Insurance</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isComprehensive" value="None" id="isComprehensive" name="check" />
+                                    <label for="isComprehensive">Comprehensive</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isThirdParty" id="isThirdParty" name="check" />
+                                    <label for="isThirdParty">Third Party</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isThirdProperty" id="isThirdProperty" name="check" />
+                                    <label for="isThirdProperty">Third Party Property</label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="finance" *ngIf="isFinance">
+                                <label>We provide loan to</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isLoanNewVeh" value="None" id="isLoanNewVeh" name="check" />
+                                    <label for="isLoanNewVeh">New</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isLoanUsedVeh" id="isLoanUsedVeh" name="check" />
+                                    <label for="isLoanUsedVeh">Used</label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="basicInfo" *ngIf="isVehicle">
+                                <label>We Deals In</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isNew" value="None" id="NewCars" name="check" />
+                                    <label for="NewCars">New Cars</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isUsed" id="UsedCars" name="check" />
+                                    <label for="UsedCars">Used Cars</label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="serviceM" *ngIf="isSM">
+                                <label>We Deals In</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isPetrol" value="isPetrol" id="petrol" name="check" />
+                                    <label for="petrol">Petrol Vehicles</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isElectric" id="electric" name="check" />
+                                    <label for="electric">Electric Vehicles</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isDiesel" value="None" id="diesel" name="check" />
+                                    <label for="diesel">Diesel Vehicles</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="All" id="All" name="check" />
+                                    <label for="All">All</label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="serviceM" *ngIf="isSM || isTrasport">
+                                <label>Will you drive to client place</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <input type="radio" formControlName="clientPlaceDriveYes" id="clientPlaceDriveYes" name="clientPlaceDriveYes" />
+                                    <label for="clientPlaceDriveYes">Yes</label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="radio" formControlName="clientPlaceDriveMaybe" id="clientPlaceDriveMaybe" name="clientPlaceDriveMaybe" />
+                                    <label for="clientPlaceDriveMaybe">Maybe</label>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                                <button class="btn btn-primary Details next" [disabled]="basicGroup.invalid" type="submit">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isSM || isVehicle">
+                    <div class="col-md-12">
+                        <h3 class="heading" [ngClass]="{'active': isMakeModeltab}"><span>2</span>Make & Model</h3>
+                    </div>
+                    <div [ngbCollapse]="!isMakeModeltab" class="col-xs-11 col-sm-11 col-md-5 Registration MT10">
+                        <div class="row">
+                            <div class="MakeWrapper">
+                                <div class="col-md-12">
+                                    <div class="table-responsive" style="max-height:200px">
+                                        <table class="table table-hover table-bordered results M0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 col-xs-5">Select Your Make</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let make of makes">
+                                                    <td>
+                                                        <div class="squaredOne">
+                                                            <input type="checkbox" [(ngModel)]="make.selected" value="make" id="{{make.name}}" name="check" (change)="onMakeSelect(make)" /> <!--(change)="onBrandSelect(brand)" -->
+                                                            <label for="{{make.name}}">{{make.name}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 MT20 SelectedVehicles">
+                                    <div class="Badges" *ngFor="let make of selectedmakes"> <span>{{make}}</span> <a (click)="onMakeSelect(make)" class="glyphicon glyphicon-remove"></a> </div>
+                                </div>
+                            </div>
+                            <!--<div class="MakeWrapper">
+                                <div class="col-md-12">
+                                    <div class="table-responsive" style="max-height:200px">
+                                        <table class="table table-hover table-bordered results M0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 col-xs-5">Select Your Model</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let model of models">
+                                                    <td>
+                                                        <div class="squaredOne">
+                                                            <input type="checkbox" (change)="onModelSelect(model)" [(ngModel)]="model.selected" value="model" id="{{model.name}}" name="check" />
+
+                                                            <label for="{{model.name}}">{{model.name}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 MT20 SelectedVehicles">
+                                    <div class="Badges" *ngFor="let model of selectedmodels"> <span>{{model}}</span> <a (click)="onModelSelect(model)" class="glyphicon glyphicon-remove"></a> </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details previous" (click)="onPrevious('makemodel')">Previous</button>
+                            <button class="btn btn-primary Details next" (click)="onNext('makemodel')">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isSM || isVehicle">
+                    <div class="col-md-12">
+                        <h3 class="heading" [ngClass]="{'active':isAreaOperation}"><span>3</span>Area of Operations</h3>
+                    </div>
+                    <div [ngbCollapse]="!isAreaOperation" class="col-xs-11 col-sm-11 col-md-5 Registration MT10">
+                        <div class="row">
+                            <div class="MakeWrapper">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-bordered results M0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 col-xs-5">Select Your State</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let state of aostates">
+                                                    <td>
+                                                        <div class="squaredOne">
+
+                                                            <input type="checkbox" [(ngModel)]="state.selected" (change)="onstateSelect(state)" value="state" id="{{state.name}}" name="check" />
+                                                            <label for="{{state.name}}">{{state.name}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 MT20 SelectedVehicles">
+                                    <div class="Badges" *ngFor="let state of selectedstates"> <span>{{state}}</span> <a (click)="onstateSelect(state)" class="glyphicon glyphicon-remove"></a> </div>
+                                </div>
+                            </div>
+                            <div class="MakeWrapper">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-bordered results M0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 col-xs-5">Select Your City</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let region of regions">
+                                                    <td>
+                                                        <div class="squaredOne">
+
+                                                            <input type="checkbox" [(ngModel)]="region.selected" (change)="onregionSelect(region)" value="region" id="{{region.name}}" name="check" />
+                                                            <label for="{{region.name}}">{{region.name}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 MT20 SelectedVehicles">
+                                    <div class="Badges" *ngFor="let region of selectedregions"> <span>{{region}}</span> <a (click)="onregionSelect(region)" class="glyphicon glyphicon-remove"></a> </div>
+                                </div>
+                            </div>
+                            <div class="MakeWrapper">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for make...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-bordered results M0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 col-xs-5">Select Your Area</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let postcode of postcodes">
+                                                    <td>
+                                                        <div class="squaredOne">
+                                                            <input type="checkbox" [(ngModel)]="postcode.selected" (change)="onpostcodeSelect(postcode)" value="postcode" id="{{postcode.name}}" name="check" />
+                                                            <label for="{{postcode.name}}">{{postcode.name}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 MT20 SelectedVehicles">
+                                    <div class="Badges" *ngFor="let postcode of selectedpostcodes"> <span>{{postcode}}</span> <a (click)="onpostcodeSelect(postcode)" class="glyphicon glyphicon-remove"></a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details previous" (click)="onPrevious('area')">Previous</button>
+                            <button class="btn btn-primary Details next" (click)="onNext('area')">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="isTransport">
+                    <div class="col-md-12">
+                        <h3 class="heading" [ngClass]="{'active':isAreaOperation}"><span>3</span>Area of Operation</h3>
+                    </div>
+                    <div [ngbCollapse]="!isRoutes" class="col-xs-11 col-sm-11 col-md-6 Registration MT10">
+                        <div class="MakeWrapper form-group">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered results M0">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-5 col-xs-5">We Transport follwing type of vehicle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let vhtype of vehicleTypes">
+                                                <td>
+                                                    <div class="squaredOne">
+
+                                                        <input type="checkbox" [(ngModel)]="vhtype.selected" (change)="onvehicleSelect(vhtype)" value="vhtype" id="{{vhtype.name}}" name="check" />
+                                                        <label for="{{vhtype.name}}">{{vhtype.name}}</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12 MT20 SelectedVehicles">
+                                <div class="Badges" *ngFor="let vhtype of selectedVehicleTypes"> <span>{{vhtype}}</span> <a (click)="onregionSelect(vhtype)" class="glyphicon glyphicon-remove"></a> </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3 class="heading active">Routes</h3>
+                        </div>
+                        <form novalidate (ngSubmit)="onNext('addroutes')" [formGroup]="transportGroup">
+                            <div class="form-group" formGroupName="transport">
+                                <label>State</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="fromState" (change)="fromstatechange($event.target.value, 'fromstate')">
+                                        <!--(ngModelChange)="toNumber()"-->
+                                        <option [value]="null">From</option>
+                                        <option *ngFor="let state of states" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="toState" (change)="fromstatechange($event.target.value, 'tostate')">
+                                        <!--(ngModelChange)="toNumber()"-->
+                                        <option [value]="null">To</option>
+                                        <option *ngFor="let state of states" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isStateRoute" (change)="onvehicleSelect('vhtype')" value="vhtype" id="isStateRoute" name="check" />
+                                    <label for="isStateRoute">Return Route</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne PT10">
+                                    <input type="text" class="form-control" placeholder="Rate Charged for one vehicle" formControlName="stateRate">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="transport">
+                                <label>Region</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="fromRegion" (change)="fromstatechange($event.target.value, 'fromregion')">
+                                        <option [value]="null">From</option>
+                                        <option *ngFor="let state of fromRegions" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="toRegion" (change)="fromstatechange($event.target.value, 'toregion')">
+                                        <option [value]="null">To</option>
+                                        <option *ngFor="let state of toRegions" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isRegionRoute" (change)="onvehicleSelect('vhtype')" value="vhtype" id="isRegionRoute" name="check" />
+                                    <label for="isRegionRoute">Return Route</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne PT10">
+                                    <input type="text" class="form-control" placeholder="Rate Charged for one vehicle" formControlName="regionRate">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" formGroupName="transport">
+                                <label>Post Code</label>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="fromPost" (change)="fromstatechange($event.target.value, 'frompost')">
+                                        <option [value]="null">From</option>
+                                        <option *ngFor="let state of fromPostcodes" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <select class="form-control" formControlName="toPost" (change)="fromstatechange($event.target.value, 'topost')">
+                                        <option [value]="null">To</option>
+                                        <option *ngFor="let state of toPostcodes" [value]="state">{{state}}</option>
+                                    </select>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="checkbox" formControlName="isPostRoute" (change)="onvehicleSelect('vhtype')" value="vhtype" id="isPostRoute" name="check" />
+                                    <label for="isPostRoute">Return Route</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="squaredOne PT10">
+                                    <input type="text" class="form-control" placeholder="Rate Charged for one vehicle" formControlName="postRate">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                                <button class="btn btn-primary Details previous" (click)="onPrevious('addroutes')">Previous</button>
+                                <button class="btn btn-primary Details next" (click)="onNext('addroutes')">Next</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="heading" [ngClass]="{'active':isSubscription}"><span>{{getheaderno('sub')}}</span>Payment Subscription</h3>
+                    </div>
+                    <div [ngbCollapse]="!isSubscription" class="col-xs-11 col-sm-11 col-md-5 Registration MT10">
+                        <div class="form-group">
+                            <label>Subscription Type</label>
+                            <select class="form-control" [(ngModel)]="dealerBasicInfo.subscription" required>
+                                <option selected>Basic</option>
+                                <option>Bronze</option>
+                                <option>Silver</option>
+                                <option>Gold</option>
+                                <option>Platinum</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details previous" (click)="onPrevious('subscription')">Previous</button>
+                            <button class="btn btn-primary Details next" (click)="onNext('subscription')">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="heading"><span>{{getheaderno('payment')}}</span>Payment</h3>
+                    </div>
+                    <div [ngbCollapse]="!isPayment" class="col-xs-11 col-sm-11 col-md-5 Registration MT10">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" placeholder="Name as per your card">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Your Card TYpe</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0Mob">
+                                <div class="squaredOne">
+                                    <input type="radio" value="None" id="Bank1" name="Bank" />
+                                    <label for="Bank1" class="Image"><img src="images/visa.jpg" alt="Visa Card"></label>
+                                </div>
+                                <div class="squaredOne">
+                                    <input type="radio" value="None" id="Bank1" name="Bank" />
+                                    <label for="Bank1" class="Image"><img src="images/mastercard.jpg" alt="Master Card"></label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enter Your Card Number</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="xxxx">
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="xxxx">
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="xxxx">
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="xxxx">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group col-md-6 PL0 PR0">
+                            <label>Expiry Date</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="MM">
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="Year">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group col-md-6 PL0 PR0">
+                            <label>CVV Number</label>
+                            <div class="clearfix"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 PL0 PR0Mob">
+                                <input type="text" class="form-control" placeholder="xxxx">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 PL0 PR0 MT20 MB20">
+                            <button class="btn btn-primary Details previous" (click)="onPrevious('payment')">Previous</button>
+                            <button class="btn btn-primary Details next" (click)="onSubmit()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- *** footer -->
+        <div class="row">
+            <div class="col-md-12 footer">
+                <p class="Txt999">Copyright 2017 © By AUTOSCOOP All Rights Reserved.</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <h2>AUTOSCOOP</h2>
+                        <p>123 6th St. West Chicago, IL 60185 </p>
+                    </div>
+                    <div class="col-md-6 col-sm-5 col-xs-12">
+                        <h2>Follow us on</h2>
+                        <a href="javascript:void()"><span class="flaticon-social"></span><span>facebook</span></a> <a href="javascript:void()"><span class="flaticon-twitter-logo"></span><span>twitter</span></a> <a href="javascript:void()"><span class="flaticon-google-plus"></span><span>google plus</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer *** -->
+
+    </div>
+    <!-- *** Offerings Starts here -->
+
+</div>
+
+<!--<input type="checkbox"
+       [checked]="( checkboxValue === true )"
+       (change)="checkboxValue = $event.target.checked;" />-->
